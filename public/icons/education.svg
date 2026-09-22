@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="blueBg" cx="45%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="45%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </radialGradient>
+    <filter id="whiteGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Blue Circular Background -->
+  <circle cx="256" cy="256" r="236" fill="url(#blueBg)"/>
+  <circle cx="256" cy="256" r="226" fill="none" stroke="#0284c7" stroke-width="3"/>
+
+  <!-- Outer White Ring -->
+  <circle cx="256" cy="256" r="218" fill="none" stroke="#ffffff" stroke-width="22" filter="url(#whiteGlow)"/>
+
+  <!-- Stylized Fantastic Four "4" -->
+  <g filter="url(#whiteGlow)">
+    <!-- Main "4" Shape using solid polygon paths -->
+    <!-- Vertical stem: runs from top (y=75) down through crossbar to bottom (y=437) -->
+    <!-- Crossbar: runs horizontally at y ~ 290 -->
+    <!-- Diagonal stroke: connects top-left (y ~ 140) to crossbar -->
+    <path d="M 302,78
+             L 348,78
+             L 348,272
+             L 426,272
+             L 426,318
+             L 348,318
+             L 348,434
+             L 302,434
+             L 302,318
+             L 126,318
+             L 126,276
+             L 302,96
+             Z
+             M 302,158
+             L 182,276
+             L 302,276
+             Z"
+          fill="#ffffff" fill-rule="evenodd"/>
+  </g>
+</svg>

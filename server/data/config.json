@@ -1,0 +1,11 @@
+{
+  "durationHours": 24,
+  "feedbackFormUrl": "https://forms.google.com/PLACEHOLDER",
+  "pptSubmissionUrl": "https://drive.google.com/drive/folders/PLACEHOLDER",
+  "hackathonTitle": "GENCODARE 2K26",
+  "organization": "ACTioner",
+  "adminPassword": "admin",
+  "hackathonStartTime": 1789913383325,
+  "hackathonEndTime": 1789999783325,
+  "status": "RUNNING"
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "generative-ai",
+    "name": "Generative AI & LLM",
+    "code": "GEN",
+    "tagline": "Autonomous Agents, Multimodal Reasoning & Foundation Models",
+    "icon": "/icons/generative-ai.png",
+    "accent": "#00FF66"
+  },
+  {
+    "id": "ai-healthcare",
+    "name": "AI for Healthcare",
+    "code": "HLT",
+    "tagline": "Clinical Diagnostics, Drug Discovery & Patient Care Optimization",
+    "icon": "/icons/healthcare.png",
+    "accent": "#00FF66"
+  },
+  {
+    "id": "ai-education",
+    "name": "AI for Education",
+    "code": "EDU",
+    "tagline": "Adaptive Pedagogy, Intelligent Tutors & Accessibility Systems",
+    "icon": "/icons/education.png",
+    "accent": "#00FF66"
+  },
+  {
+    "id": "fintech",
+    "name": "FinTech",
+    "code": "FIN",
+    "tagline": "Algorithmic Risk, Fraud Forensics & Decentralized Finance",
+    "icon": "/icons/fintech.png",
+    "accent": "#00FF66"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "c_1789894772689",
+    "order": 1,
+    "createdAt": "2026-09-20T08:59:32.689Z",
+    "title": "text",
+    "caption": "new",
+    "imageUrl": "/uploads/slide_1789894772675_8751.jpg"
+  },
+  {
+    "id": "c1",
+    "title": "GENCODARE 2K26",
+    "caption": "STATUS: BATTLEFIELD ACTIVE // 24 HOURS REMAINING",
+    "imageUrl": "/uploads/slide_1.png",
+    "order": 2,
+    "createdAt": "2026-09-20T10:00:00.000Z"
+  },
+  {
+    "id": "c2",
+    "title": "MISSION DISPATCH & DOMAIN ISOLATION",
+    "caption": "SELECT PROBLEM -> ENGAGE FIRE -> LOCK OBJECTIVES",
+    "imageUrl": "/uploads/slide_2.png",
+    "order": 3,
+    "createdAt": "2026-09-20T10:05:00.000Z"
+  },
+  {
+    "id": "c3",
+    "title": "EVALUATION CRITERIA & FEEDBACK",
+    "caption": "ENGINEERING EXCELLENCE // ETHICAL ROBUSTNESS",
+    "imageUrl": "/uploads/slide_3.png",
+    "order": 4,
+    "createdAt": "2026-09-20T10:10:00.000Z"
+  },
+  {
+    "id": "c_1789896330756",
+    "order": 5,
+    "createdAt": "2026-09-20T09:25:30.756Z",
+    "title": "COMMAND MULTI-PHOTO TEST (1)",
+    "caption": "LIVE HACKATHON BROADCAST",
+    "imageUrl": "/uploads/slide_1789896330702_462.png"
+  },
+  {
+    "id": "c_1789896330764",
+    "order": 6,
+    "createdAt": "2026-09-20T09:25:30.764Z",
+    "title": "COMMAND MULTI-PHOTO TEST (2)",
+    "caption": "LIVE HACKATHON BROADCAST",
+    "imageUrl": "/uploads/slide_1789896330705_7494.png"
+  }
+]

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: doomsday-hackathon-platform
+    env: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start

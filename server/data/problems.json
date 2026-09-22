@@ -1,0 +1,22 @@
+[
+  {
+    "domain": "generative-ai",
+    "domainName": "Generative AI & LLM",
+    "problems": []
+  },
+  {
+    "domain": "ai-healthcare",
+    "domainName": "AI for Healthcare",
+    "problems": []
+  },
+  {
+    "domain": "ai-education",
+    "domainName": "AI for Education",
+    "problems": []
+  },
+  {
+    "domain": "fintech",
+    "domainName": "FinTech",
+    "problems": []
+  }
+]
