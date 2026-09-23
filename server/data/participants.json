@@ -4,5 +4,23 @@
     "phone": "1234567890",
     "gmail": "rtuwuywtuywetyuqet@gmail.com",
     "domain": "generative-ai"
+  },
+  {
+    "name": "Dr. Sarah Chen",
+    "phone": "9876543210",
+    "gmail": "sarah.chen@healthcare.io",
+    "domain": "ai-healthcare"
+  },
+  {
+    "name": "Prof. Marcus Vance",
+    "phone": "9876543220",
+    "gmail": "marcus.vance@education.edu",
+    "domain": "ai-education"
+  },
+  {
+    "name": "Elena Rostova",
+    "phone": "9876543230",
+    "gmail": "elena.rostova@fintech.capital",
+    "domain": "fintech"
   }
 ]

@@ -208,6 +208,7 @@ export default function App() {
             participant={participant}
             domain={participant?.domainInfo}
             hackathon={hackathonStatus}
+            onReselect={() => setCurrentView('problem-selection')}
           />
         )}
 

@@ -11,6 +11,7 @@
     "dev:client": "vite",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "build": "vite build",
+    "postinstall": "npm run build",
     "start": "node server/index.js"
   },
   "dependencies": {

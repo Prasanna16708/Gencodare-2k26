@@ -3,11 +3,33 @@ import { Target, CheckCircle2, Shield, Sparkles, ExternalLink, Code2, AlertCircl
 import { HACKATHON_CONFIG } from '../../services/config';
 import { ApiService } from '../../services/api';
 
-export default function ProblemView({ problem, domain, feedbackUrl, pptUrl, initialPptTemplate }) {
+export default function ProblemView({ problem: initialProblem, selectedProblemId, domain, feedbackUrl, pptUrl, initialPptTemplate }) {
   const formUrl = feedbackUrl || HACKATHON_CONFIG.feedbackFormUrl;
   const driveUrl = pptUrl || HACKATHON_CONFIG.pptSubmissionUrl || 'https://drive.google.com/';
 
+  const [problem, setProblem] = useState(initialProblem || null);
   const [pptTemplate, setPptTemplate] = useState(initialPptTemplate || null);
+
+  useEffect(() => {
+    if (initialProblem) {
+      setProblem(initialProblem);
+    }
+  }, [initialProblem]);
+
+  useEffect(() => {
+    if (!problem && selectedProblemId) {
+      async function loadProblem() {
+        try {
+          const res = await ApiService.getProblems();
+          if (res && res.problems) {
+            const match = res.problems.find(p => p.id === selectedProblemId);
+            if (match) setProblem(match);
+          }
+        } catch (err) {}
+      }
+      loadProblem();
+    }
+  }, [problem, selectedProblemId]);
 
   useEffect(() => {
     if (initialPptTemplate) {
@@ -38,8 +60,25 @@ export default function ProblemView({ problem, domain, feedbackUrl, pptUrl, init
 
   if (!problem) {
     return (
-      <div className="liquid-glass hud-corner p-8 text-center text-silver-muted font-mono text-xs border border-white/10 mb-8">
-        NO MISSION OBJECTIVE CURRENTLY SELECTED
+      <div className="liquid-glass hud-corner p-8 sm:p-12 text-center text-silver-muted font-mono text-xs border border-white/10 mb-8 space-y-4">
+        <Target size={36} className="mx-auto text-silver-muted opacity-60" />
+        <div className="text-silver-bright font-bold text-sm tracking-wide">
+          NO MISSION OBJECTIVE CURRENTLY SELECTED
+        </div>
+        <p className="max-w-md mx-auto text-silver-muted text-xs leading-relaxed">
+          You haven't locked in a problem statement yet, or the previously assigned problem directive is unavailable.
+        </p>
+        {onReselect && (
+          <div>
+            <button
+              type="button"
+              onClick={onReselect}
+              className="btn-primary py-2 px-6 text-xs font-bold shadow-[0_0_15px_rgba(0,255,102,0.4)] cursor-pointer"
+            >
+              CHOOSE A PROBLEM DIRECTIVE
+            </button>
+          </div>
+        )}
       </div>
     );
   }

@@ -2,21 +2,425 @@
   {
     "domain": "generative-ai",
     "domainName": "Generative AI & LLM",
-    "problems": []
+    "problems": [
+      {
+        "id": "GEN-01",
+        "title": "Autonomous Multi-Agent Incident Response & Root Cause Forensics",
+        "description": "Construct an autonomous multi-agent swarm capable of intercepting distributed microservice telemetry, Kubernetes crashlogs, and real-time network traces during critical outages. The swarm must cross-correlate disparate alerts, hypothesize root causes via causal graphs, autonomously draft idempotent remediation scripts, and present human-in-the-loop validation dashboards before automated execution.",
+        "difficulty": "Expert",
+        "keyMetrics": "< 45s Mean-Time-to-Diagnosis (MTTD), zero false-positive remediation triggers, 98% factual precision on root-cause attribution",
+        "deliverables": "Autonomous multi-agent orchestration service (LangGraph/AutoGen/CrewAI), telemetry ingestion sandbox, interactive forensic visualizer, and end-to-end incident drill demonstration.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-02",
+        "title": "Ultra-Low-Latency On-Device Multimodal Reasoning & Video Q&A",
+        "description": "Design an edge-optimized multimodal vision-language pipeline that operates on streaming video feeds in real time without cloud inference offloading. The system must process continuous visual tokens, maintain a compact spatio-temporal memory buffer, and answer complex natural language queries regarding past events in the scene with minimal memory footprint.",
+        "difficulty": "Advanced",
+        "keyMetrics": ">= 24 FPS video frame processing on edge hardware (Apple Silicon/Snapdragon/RTX), latency < 350ms, RAM footprint <= 4GB",
+        "deliverables": "Quantized Vision-LLM model deployment pipeline, sliding-window video memory engine, interactive live camera stream Q&A interface.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-03",
+        "title": "Verifiable Self-Correcting Code Synthesis & Static Security Prover",
+        "description": "Build a state-of-the-art code generation engine with formal verification and security synthesis loops. Given a specification or user story, the model must generate code, synthesize unit and property-based test suites, run sandbox execution, analyze AST security vulnerabilities (CWE/OWASP), and iterate self-correction prompts until formal assertions pass.",
+        "difficulty": "Expert",
+        "keyMetrics": ">= 90% Pass@1 on complex algorithmic specs, 100% elimination of OWASP Top 10 vulnerabilities in generated code, max 3 self-correction iterations",
+        "deliverables": "Agentic coding harness with Dockerized isolated runner, AST static analysis validator, interactive web workbench showing compilation, test output, and diff history.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-04",
+        "title": "Hallucination-Proof Graph-Augmented Enterprise Knowledge Engine (GraphRAG)",
+        "description": "Develop a Graph-augmented Retrieval Augmented Generation (GraphRAG) architecture that parses millions of complex unstructured documents (PDFs, schematics, transcripts), extracts entity-relationship subgraphs, and traverses multi-hop connections. The system must synthesize answers with cryptographic provenance citations referencing exact coordinate bounding boxes in source materials.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Zero unsupported hallucination claims, multi-hop retrieval accuracy > 92%, citation provenance resolution < 1.2s",
+        "deliverables": "Knowledge graph extraction engine (Neo4j/Graphiti), vector-graph hybrid retrieval index, web interface with interactive 3D graph explorer and visual PDF highlighter.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-05",
+        "title": "Hyper-Realistic Real-Time Conversational Voice Agent with Emotional Modulation",
+        "description": "Create an end-to-end full-duplex speech-to-speech conversational agent that achieves human-like turn taking, natural interruptions (barge-in capability), dynamic emotional prosody adaptation, and context-aware speech pacing without perceivable lag.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Total glass-to-glass latency < 400ms, barge-in recognition under 120ms, emotion inflection alignment score > 4.5/5.0 MOS",
+        "deliverables": "WebRTC / WebSocket full duplex voice server, streaming neural TTS/STT integration, web audio cockpit with visual audio reactive waveform and live transcript.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-06",
+        "title": "Adversarial Red-Teaming & Prompt Injection Defense Firewall (Guardrail LLM)",
+        "description": "Engineer a real-time semantic firewall for LLM applications that intercepts and neutralizes zero-day jailbreaks, indirect prompt injection (hidden within ingested websites/documents), data exfiltration vectors, and multi-turn social engineering attempts before reaching base foundation models.",
+        "difficulty": "Expert",
+        "keyMetrics": "99.4% jailbreak/injection interception rate, < 15ms latency overhead per request, false-positive rejection rate < 0.5%",
+        "deliverables": "Proxy middleware with token-level heuristics, vector embeddings anomaly detector, live Red-Teaming attack playground demonstrating attack mitigation.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-07",
+        "title": "Controllable Generative 3D Asset & Scene Synthesis from Spatial Directives",
+        "description": "Implement a generative pipeline that converts natural language environment descriptions and spatial bounding boxes into coherent, game-engine-ready 3D textured mesh scenes (glTF/USDZ). The system must respect exact volumetric measurements, collision semantics, and PBR material consistency.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Full 3D scene generation in < 30 seconds, watertight manifold geometry, PBR 2K texture maps adhering to realistic lighting",
+        "deliverables": "Diffusion/Gaussian Splatting/NeRF asset synthesis backend, Three.js or Babylon.js WebGL interactive viewer with export capabilities.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-08",
+        "title": "Federated Privacy-Preserving LLM Fine-Tuning across Siloed Nodes",
+        "description": "Build a federated parameter-efficient fine-tuning (PEFT/LoRA) framework enabling multiple decentralized organizations to collaboratively adapt a foundation model on confidential domain data without sharing raw inputs, enforcing differential privacy guarantees.",
+        "difficulty": "Expert",
+        "keyMetrics": "(epsilon, delta)-differential privacy with epsilon <= 2.0, convergence within 15% of centralized fine-tuning quality, minimal communication payload (< 25MB per round)",
+        "deliverables": "Federated coordinator & worker nodes, differential privacy noise injector, dashboard visualizing LoRA weight aggregation and model loss progression.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-09",
+        "title": "Autonomous Long-Horizon Research Scientist & Literature Synthesis Agent",
+        "description": "Develop an autonomous research assistant capable of executing long-horizon scientific investigations: querying arXiv/PubMed/Semantic Scholar, scraping preprints, synthesizing meta-analyses, generating reproducible hypothesis tests in code, and compiling publication-ready LaTeX manuscripts.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Autonomous execution over 50+ recursive reasoning steps without context drift, 100% verifiable paper references, comprehensive synthesis across 30+ papers",
+        "deliverables": "Autonomous literature agent workflow, citation cross-validation engine, live LaTeX compiler and PDF report generator.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "GEN-10",
+        "title": "Dynamic World Model for Autonomous GUI Navigation & Web Agent Task Execution",
+        "description": "Design an autonomous computer-use agent that perceives arbitrary graphical user interfaces (browser DOM + screenshot pixels), infers state machine transitions, plans keyboard/mouse actions, and reliably accomplishes multi-step enterprise workflows (e.g. ERP data migration, multi-vendor bookings) with self-recovery on layout alterations.",
+        "difficulty": "Expert",
+        "keyMetrics": ">= 85% success rate on WebArena/Mind2Web style benchmarks, robust recovery from 404/modal popups, latency < 800ms per decision step",
+        "deliverables": "Headless browser execution driver (Playwright/Puppeteer), multimodal perception grounding module, live interactive agent sandbox showing screen and thought process.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      }
+    ]
   },
   {
     "domain": "ai-healthcare",
     "domainName": "AI for Healthcare",
-    "problems": []
+    "problems": [
+      {
+        "id": "HLT-01",
+        "title": "Real-Time Emergency Department Triage Prioritization & Decompensation Predictor",
+        "description": "Construct an AI clinical co-pilot for emergency departments that ingests real-time ICU/ER telemetry, vital signs, demographic profiles, and nursing notes. The model must predict patient clinical decompensation (septic shock, cardiac arrest, respiratory failure) 4-6 hours in advance with explainable risk heatmaps.",
+        "difficulty": "Expert",
+        "keyMetrics": "AUROC >= 0.91 for 6-hour sepsis and shock onset, < 2% false alarm fatigue rate, SHAP-based feature importance explainability < 100ms",
+        "deliverables": "Streaming inference engine for vital signs time-series, clinical decision dashboard with color-coded acuity triage tiers and automated early warning scores (NEWS2).",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-02",
+        "title": "Multimodal Radiology & Pathology Cross-Validation with Diagnostic Grounding",
+        "description": "Develop a diagnostic system that accepts paired medical imaging (CT/MRI/Histopathology slides) along with clinical lab findings, performs volumetric lesion segmentation, and outputs structured radiological findings cross-referenced against ACR Appropriateness Criteria.",
+        "difficulty": "Expert",
+        "keyMetrics": "Dice similarity coefficient >= 0.88 for lesion segmentation, diagnostic concordance >= 94% with expert board-certified radiologists",
+        "deliverables": "DICOM/NIfTI viewer integrated web app, automated tumor boundary segmenter, draft radiology report generator with highlighted anatomical zones.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-03",
+        "title": "HIPAA-Compliant Decentralized EHR Synthesizer & Medical Translation Engine",
+        "description": "Design an automated medical record summarization and translation engine that transforms dense, jargon-laden Electronic Health Records (EHR) into clear, compassionate, and medically accurate summaries for patients in their native languages, while rigorously redacting all 18 HIPAA Safe Harbor identifiers.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "100% PHI redaction recall, reading level calibrated to 6th-grade comprehension, zero semantic medical distortion",
+        "deliverables": "FHIR/HL7 data connector, zero-retention privacy anonymizer, bilingual patient-facing portal with interactive medical term clarifiers.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-04",
+        "title": "AI-Driven Molecular De Novo Drug Design & Affinity Binding Predictor",
+        "description": "Create a generative chemistry platform that designs novel small-molecule candidates targeting specified disease protein pockets. The system must predict binding affinity (Kd/Ki), drug-likeness (QED), synthetic accessibility (SAScore), and ADMET toxicity profiles.",
+        "difficulty": "Expert",
+        "keyMetrics": "Predicted pKd affinity >= 8.0, Synthetic Accessibility Score < 3.5, 0% high-risk mutagenic/cardiotoxic alerts",
+        "deliverables": "Generative molecular graph/SMILES generator, 3D protein-ligand docking visualizer (nglview/molstar), ranked candidate leaderboard.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-05",
+        "title": "Continuous Non-Invasive Glucose & Hemodynamic Modeling from Wearable Photoplethysmography",
+        "description": "Build an intelligent continuous biosignal processor that translates raw PPG and accelerometer signals from standard consumer smartwatches into calibrated estimations of blood pressure variations, arterial stiffness, and blood glucose trends.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Mean Absolute Relative Difference (MARD) < 12% for glycemic trend estimation, systolic/diastolic error within ANSI/AAMI SP10 standards (+-5mmHg)",
+        "deliverables": "Biosignal noise-filtering & peak detection pipeline, deep temporal regression model, interactive biometric telemetry dashboard with abnormal trend alerts.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-06",
+        "title": "Rare Pediatric Genetic Variant Pathogenicity Classifier",
+        "description": "Develop a genomic variant interpretation system that scores Whole Exome Sequencing (WES) VCF files for pediatric patients with undiagnosed congenital syndromes. The model must cross-reference ClinVar, gnomAD, and OMIM, prioritizing causal de novo mutations with ACMG guideline compliance.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Pathogenicity classification accuracy > 96%, ACMG criterion justification fidelity > 92%, whole-exome turnaround < 3 minutes",
+        "deliverables": "VCF annotation pipeline, ACMG automated rule engine, interactive pediatric clinical geneticist decision support UI.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-07",
+        "title": "Surgical Phase Recognition & Instrument Trajectory Safety Monitor",
+        "description": "Engineer a computer vision system for laparoscopic and robotic surgery videos that identifies procedural phases in real-time, tracks instrument trajectories, and provides proactive safety alerts when instruments approach critical anatomical risk zones.",
+        "difficulty": "Expert",
+        "keyMetrics": "Phase classification accuracy > 92% on Cholec80 benchmark, spatial tracking jitter < 2mm, danger zone breach warning latency < 100ms",
+        "deliverables": "Video frame segmentation pipeline, spatial tool-tip tracker, real-time surgical overlay HUD with safety boundary indicators.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-08",
+        "title": "Conversational Mental Health Crisis Intervention & Cognitive Behavioral Companion",
+        "description": "Create a clinical-grade conversational agent designed for adolescent and adult mental health support. The system must detect subtle suicide/self-harm ideation, immediately initiate safety de-escalation protocols, and provide evidence-based CBT micro-interventions between therapy sessions.",
+        "difficulty": "Advanced",
+        "keyMetrics": "99.8% sensitivity on self-harm / crisis detection, seamless automated handoff protocol to human crisis hotlines (988), PHQ-9 validation tracking",
+        "deliverables": "Safety-first conversational engine, mood & sentiment journal tracker, crisis escalation protocol dispatcher, and clinician review portal.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-09",
+        "title": "Smart Hospital Medication Interaction & Adverse Event Safeguard",
+        "description": "Build an intelligent inpatient pharmacy safeguard that ingests real-time computerized physician order entries (CPOE), patient kidney/liver lab values, and genomic CYP450 profiles to detect severe drug-drug, drug-disease, and dosing discrepancies before administration.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "Zero missed severe adverse drug reactions (ADR), alert override rate < 15% (avoiding alert fatigue), millisecond verification response",
+        "deliverables": "Pharmacokinetic interaction graph, automated dosage calculator based on eGFR/weight, hospital prescription audit interface.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "HLT-10",
+        "title": "Automated Clinical Trial Eligibility Matching & Patient Recruitment Engine",
+        "description": "Design an automated matcher that parses complex clinical trial eligibility criteria from ClinicalTrials.gov and matches them against institutional EHR patient cohorts, addressing demographic underrepresentation and accelerating life-saving clinical trial enrollment.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Trial inclusion/exclusion parsing accuracy > 93%, candidate patient matching precision > 89%, 5x acceleration in cohort discovery",
+        "deliverables": "Clinical trial semantic parser, FHIR cohort query builder, interactive investigator dashboard with diversity analytics.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      }
+    ]
   },
   {
     "domain": "ai-education",
     "domainName": "AI for Education",
-    "problems": []
+    "problems": [
+      {
+        "id": "EDU-01",
+        "title": "Socratic Multi-Turn Intelligent Mathematics & Coding Tutor",
+        "description": "Construct an AI tutor that never merely provides the direct answer. Using Socratic pedagogy, the system diagnoses a student's conceptual misunderstanding from their scratchpad equations or code submissions, asks targeted guiding questions, and scaffolds them toward autonomous discovery.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Pedagogical adherence score > 95% (zero prompt leaks of direct solutions), 40% improvement in student retention on follow-up problem sets",
+        "deliverables": "Interactive digital scratchpad & code editor, step-by-step Socratic conversational agent, concept mastery progression map.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-02",
+        "title": "Neurodivergent-Adaptive Learning Interface for Dyslexia & ADHD",
+        "description": "Develop a dynamic reading and comprehension platform that actively tracks reader gaze patterns, scroll velocity, and comprehension pauses. The interface dynamically re-typesets text (font weighting, syllable chunking, bionic reading, focus rulers) and generates bite-sized visual analogies to maximize ADHD and dyslexic focus.",
+        "difficulty": "Advanced",
+        "keyMetrics": "35% increase in sustained reading time for ADHD cohort, 28% increase in comprehension test scores, zero cognitive overload ratings",
+        "deliverables": "Client-side adaptive rendering engine, real-time attention fatigue estimator, personalized accessibility configuration console.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-03",
+        "title": "Automated Open-Ended Essay Evaluation with Pedagogical Feedback & Rubric Alignment",
+        "description": "Build an automated essay grading and constructive feedback system for humanities and STEM courses. The model must evaluate narrative coherence, argument strength, empirical evidence, and grammatical fluency against custom institutional rubrics, providing line-by-line constructive suggestions without bias.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "Quadratic Weighted Kappa (QWK) >= 0.88 against expert human graders, zero demographic grading variance, granular line citations for all rubric deductions",
+        "deliverables": "Rubric builder tool, multi-dimensional essay scoring engine, student revision portal with side-by-side suggested enhancements.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-04",
+        "title": "Immersive Micro-Curriculum Generator from Real-World Web Knowledge",
+        "description": "Engineer a system that converts any arbitrary complex topic (e.g., Quantum Key Distribution, CRDTs, Epigenetics) into an interactive 5-day micro-curriculum complete with conceptual primers, interactive simulations, flashcards with spaced repetition schedules, and automated quizzes.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "Complete, structured curriculum synthesized in < 45 seconds, FSRS spaced repetition scheduling integration, 95% syllabus coherence rating",
+        "deliverables": "Curriculum generation pipeline, interactive daily module viewer with embedded interactive widgets, Anki-compatible export functionality.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-05",
+        "title": "Real-Time Classroom Engagement Analytics & Confusion Heatmap for Remote Lectures",
+        "description": "Design a privacy-preserving computer vision and acoustic analytics service for virtual lectures (Zoom/Meet/Teams) that estimates aggregate student confusion, disengagement, and audio question clarity without storing raw facial images or biometrics.",
+        "difficulty": "Advanced",
+        "keyMetrics": "On-device edge feature extraction (no cloud video upload), 90% correlation with post-lecture student self-reported confusion points, < 5% CPU usage",
+        "deliverables": "Edge vision analyzer, real-time live lecture HUD for professors showing engagement levels and recommended clarification prompts.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-06",
+        "title": "Multilingual Knowledge Equalizer for Underserved Vernacular Dialects",
+        "description": "Construct an educational translation and cultural adaptation engine that translates STEM textbooks and educational video lectures into regional low-resource languages and colloquial dialects, replacing culturally foreign idioms with familiar local metaphors.",
+        "difficulty": "Advanced",
+        "keyMetrics": "BLEU score >= 38 on low-resource dialect translation, cultural analogy relevance score > 4.6/5.0, accurate preservation of technical nomenclature",
+        "deliverables": "Multilingual localization engine, automated audio voiceover dubber, dual-language interactive e-book reader.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-07",
+        "title": "Generative Interactive Science Lab Simulator (Physics & Chemistry in Browser)",
+        "description": "Create an AI-powered interactive sandbox where students can experiment with virtual physics setups and chemical reactions. If a student tries an unusual combination, the generative physics engine simulates realistic visual and physical outcomes (thermodynamics, fluid dynamics, reaction kinematics).",
+        "difficulty": "Expert",
+        "keyMetrics": "Accurate physical conservation laws within 2% margin, real-time 60 FPS Canvas/WebGL rendering, zero unhandled chemical reaction combinations",
+        "deliverables": "Interactive WebGL chemistry/physics workbench, reaction prediction module, lab assignment grading engine.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-08",
+        "title": "AI Academic Integrity & Genuine Authorship Forensic Verification",
+        "description": "Build an authorship verification tool that moves beyond superficial perplexity detectors to analyze keystroke dynamics, revision history logs, syntax evolution, and conceptual depth to genuinely verify student authentic authorship while safeguarding against false accusations.",
+        "difficulty": "Advanced",
+        "keyMetrics": "False positive accusation rate < 0.1%, temporal edit replay verification accuracy > 95%, multi-draft style fingerprinting",
+        "deliverables": "Web text editor extension capturing edit cadence and revision trees, forensic analytics report visualizer, teacher dispute resolution interface.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-09",
+        "title": "Peer-to-Peer Collaborative Study Group Formation & Synergy Optimizer",
+        "description": "Design an optimization engine that clusters students into optimal study groups based on complementary skill matrices, cognitive learning preferences, schedule constraints, and historical collaborative success metrics, accompanied by an AI moderator that prompts productive group discussions.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "30% higher project completion rates compared to random groupings, 90% positive peer evaluation scores, automated dispute prevention",
+        "deliverables": "Graph-based matching algorithm, collaborative team dashboard with shared whiteboards, automated AI group facilitator agent.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "EDU-10",
+        "title": "Vocational Skill Apprenticeship Simulator & Real-Time Haptic Coaching",
+        "description": "Develop an interactive procedural training assistant that guides vocational students through electrical wiring, mechanical assembly, or medical CPR protocols using smartphone cameras, giving immediate audio and visual corrections when steps are executed out of sequence.",
+        "difficulty": "Expert",
+        "keyMetrics": "Object and step detection latency < 150ms on mobile browsers, 100% detection of critical safety omissions (e.g. ungrounded wire), voice guidance accuracy",
+        "deliverables": "Mobile AR guidance camera overlay, step-by-step procedural graph checker, student competency certification dashboard.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      }
+    ]
   },
   {
     "domain": "fintech",
     "domainName": "FinTech",
-    "problems": []
+    "problems": [
+      {
+        "id": "FIN-01",
+        "title": "Real-Time Graph Neural Network for Anti-Money Laundering (AML) & Mule Account Rings",
+        "description": "Build an ultra-high-throughput financial transaction monitoring engine using dynamic Graph Neural Networks (GNNs). The system must analyze high-velocity transactional graphs, detecting complex cyclic layering, smurfing patterns, and synthetic identity mule networks across millions of accounts in milliseconds.",
+        "difficulty": "Expert",
+        "keyMetrics": "Sub-25ms inference latency per transaction, >= 94% recall on multi-hop laundering rings, 60% reduction in false-positive compliance alerts",
+        "deliverables": "Dynamic graph analytics pipeline (PyG/DGL), real-time streaming transaction simulator, interactive compliance investigation workbench with 3D money flow graphs.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-02",
+        "title": "Autonomous Smart Contract Vulnerability Exploitation & Formal Verification Engine",
+        "description": "Construct an automated security auditor for decentralized finance (DeFi) protocols (Solidity/EVM). The tool must combine static analysis, symbolic execution, and fuzz testing to detect reentrancy, flash-loan vulnerabilities, price oracle manipulation, and arithmetic underflow/overflow before mainnet deployment.",
+        "difficulty": "Expert",
+        "keyMetrics": "100% detection rate on historic DeFi exploit benchmark datasets, zero false negative reentrancy vulnerabilities, automated exploit PoC test synthesis",
+        "deliverables": "EVM bytecode symbolic execution runner, automated exploit generator, security audit PDF report generator with remediation code patches.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-03",
+        "title": "Explainable Alternative Data Credit Underwriting for Underbanked Populations",
+        "description": "Design an explainable credit scoring engine for individuals without traditional credit bureau histories. The model aggregates alternative data (utility payments, mobile money flows, gig-economy income consistency) to calculate fair, non-discriminatory credit limits conforming to ECOA / Fair Lending standards.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "Gini coefficient >= 0.65, 0% disparate impact ratio violations across protected demographic classes, instant generation of adverse action notices with counterfactual explanations",
+        "deliverables": "Alternative data ingestion and feature engineering engine, explainable ML model (EBM / TreeSHAP), loan officer approval portal.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-04",
+        "title": "High-Frequency Limit Order Book Microstructure Forensics & Spoofing Detector",
+        "description": "Engineer a real-time Level-3 (L3) market microstructure anomaly detector that inspects order cancellations, quote stuffing, layering, and iceberg orders across equity and crypto exchanges, alerting regulators to market manipulation attempts.",
+        "difficulty": "Expert",
+        "keyMetrics": "Processing throughput > 100,000 order book updates/sec, spoofing event detection latency < 5ms, precision > 91%",
+        "deliverables": "L3 order book reconstructor and visualizer, market manipulation heuristic + deep sequence model, real-time trading floor compliance dashboard.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-05",
+        "title": "Zero-Knowledge Proof (ZKP) Confidential Settlement & Identity Verification",
+        "description": "Create a privacy-first payment rail leveraging zk-SNARKs/zk-STARKs. Users can prove compliance with regulatory criteria (e.g., accredited investor status, KYC verification, jurisdictional authorization) without disclosing their identity, account balance, or counterparties to the network.",
+        "difficulty": "Expert",
+        "keyMetrics": "ZKP proof generation time < 2.5s on standard browsers, verification gas cost < 150k on EVM, zero leakage of underlying witness data",
+        "deliverables": "Circom/SnarkJS zero-knowledge circuits, client-side proof generator, smart contract verifier, and web transfer interface.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-06",
+        "title": "Autonomous Corporate Financial Analyst & Earnings Call Sentiment Forecaster",
+        "description": "Develop an autonomous financial agent that ingests SEC 10-K/10-Q filings, earnings call audio, and macroeconomic indicators, synthesizing interactive discounted cash flow (DCF) models, forensic accounting red-flag alerts, and executive vocal stress indicators.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Automated DCF model accuracy within 5% of Wall St consensus, vocal hesitation/evasiveness detection precision > 88%, multi-year filing cross-comparison < 10s",
+        "deliverables": "SEC EDGAR scraping and financial statement parser, earnings call acoustic/text sentiment analyzer, interactive financial valuation cockpit with downloadable Excel models.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-07",
+        "title": "Biometric Behavioral Fraud Detection for Digital Banking & Session Hijacking",
+        "description": "Implement a continuous behavioral biometric authentication system for mobile and web banking that tracks user touch gestures, typing cadence, mouse acceleration curves, and device gyroscope signatures to immediately lock out account takeovers and remote access trojans (RATs).",
+        "difficulty": "Advanced",
+        "keyMetrics": "Equal Error Rate (EER) < 1.8%, anomaly detection within 3 user interactions post-hijack, zero disruption to legitimate users",
+        "deliverables": "Lightweight client-side telemetry tracker, streaming behavioral anomaly detection service, security operations center (SOC) live alerts dashboard.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-08",
+        "title": "Cross-Border Automated Multi-Currency Clearing & FX Liquidity Router",
+        "description": "Build an intelligent foreign exchange (FX) smart order routing engine that splits massive cross-border corporate payments across multiple liquidity pools, automated market makers (AMMs), and interbank channels to minimize slippage, transaction fees, and settlement delays.",
+        "difficulty": "Advanced",
+        "keyMetrics": ">= 35% reduction in slippage and transfer costs on $1M+ corridors, settlement finality < 60s, automated hedging of volatility risk",
+        "deliverables": "Optimal routing algorithm (Bellman-Ford / convex optimization), simulated interbank FX liquidity pool environment, treasury management interface.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-09",
+        "title": "Automated ESG Regulatory Compliance & Supply Chain Greenwashing Auditor",
+        "description": "Construct an AI system that audits corporate sustainability reports (CSRD/SEC Climate disclosures) against satellite geospatial imagery, maritime shipping emissions, and supply chain invoices to expose greenwashing and calculate verified Scope 1, 2, and 3 carbon footprints.",
+        "difficulty": "Intermediate",
+        "keyMetrics": "Cross-validation consistency > 90% across disparate corporate disclosures, satellite emission anomaly detection accuracy > 87%",
+        "deliverables": "Multimodal ESG extraction pipeline, geospatial emissions cross-validator, interactive corporate sustainability risk score portal.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      },
+      {
+        "id": "FIN-10",
+        "title": "Personalized Autonomous Wealth Concierge & Micro-Tax Optimization Engine",
+        "description": "Design an autonomous personal financial advisor that analyzes real-time user spending, tax liabilities, investment portfolio risk parity, and upcoming life events. The system executes micro-tax-loss harvesting, automated emergency fund rebalancing, and debt avalanche strategies autonomously.",
+        "difficulty": "Advanced",
+        "keyMetrics": "Demonstrated 2-4% annual alpha through automated tax-loss harvesting and fee reduction, zero tax filing penalties, 100% fiduciary constraints adherence",
+        "deliverables": "Financial planning optimization engine, automated transaction categorizer, mobile-responsive client wealth dashboard with natural language strategy explanations.",
+        "createdAt": "2026-09-23T09:00:00.000Z",
+        "updatedAt": "2026-09-23T09:00:00.000Z"
+      }
+    ]
   }
 ]

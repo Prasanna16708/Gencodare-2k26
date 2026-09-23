@@ -1,256 +1,71 @@
 {
-  "adm_cbb9d2d0-4352-43ca-b271-b7e8c99eea31": {
-    "token": "adm_cbb9d2d0-4352-43ca-b271-b7e8c99eea31",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789893824093,
-    "updatedAt": 1789893824094
+  "part_e9d787db-1968-4530-b2c8-7a72f8ab073d": {
+    "token": "part_e9d787db-1968-4530-b2c8-7a72f8ab073d",
+    "isParticipant": true,
+    "name": "prasanna",
+    "phone": "1234567890",
+    "gmail": "rtuwuywtuywetyuqet@gmail.com",
+    "domain": "generative-ai",
+    "selectedProblemId": null,
+    "hasFired": false,
+    "loginAt": 1790153243409,
+    "updatedAt": 1790153243410
   },
-  "adm_236ef444-a0f0-4ed3-a856-c49d5add259a": {
-    "token": "adm_236ef444-a0f0-4ed3-a856-c49d5add259a",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789894228827,
-    "updatedAt": 1789894228828
-  },
-  "part_6ee412a1-601f-447e-9d79-872ef7ffa277": {
-    "token": "part_6ee412a1-601f-447e-9d79-872ef7ffa277",
+  "part_611d0009-a3a0-4000-91a4-b85355b42a19": {
+    "token": "part_611d0009-a3a0-4000-91a4-b85355b42a19",
     "isParticipant": true,
     "name": "Dr. Sarah Chen",
+    "phone": "9876543210",
+    "gmail": "sarah.chen@healthcare.io",
+    "domain": "ai-healthcare",
+    "selectedProblemId": null,
+    "hasFired": false,
+    "loginAt": 1790153243440,
+    "updatedAt": 1790153243443
+  },
+  "part_006f03ce-ad13-4aca-ab0c-ba83a2d910dc": {
+    "token": "part_006f03ce-ad13-4aca-ab0c-ba83a2d910dc",
+    "isParticipant": true,
+    "name": "Prof. Marcus Vance",
     "phone": "9876543220",
-    "gmail": "sarah.chen@gmail.com",
-    "domain": "ai-healthcare",
-    "selectedProblemId": "HLT-02",
-    "hasFired": false,
-    "loginAt": 1789894577185,
-    "updatedAt": 1789894589649,
-    "selectedAt": 1789894589648
-  },
-  "adm_beeb032b-7117-476f-85f3-2a9e3f555966": {
-    "token": "adm_beeb032b-7117-476f-85f3-2a9e3f555966",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789894703657,
-    "updatedAt": 1789894703659
-  },
-  "adm_4f00b7c3-5a3d-4d5b-85a2-659cd59da8ed": {
-    "token": "adm_4f00b7c3-5a3d-4d5b-85a2-659cd59da8ed",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789895140850,
-    "updatedAt": 1789895140850
-  },
-  "adm_75901dc2-0e71-43f0-9760-041aef9275a1": {
-    "token": "adm_75901dc2-0e71-43f0-9760-041aef9275a1",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789895213517,
-    "updatedAt": 1789895213518
-  },
-  "part_d931bfaa-c6cd-4b13-a6ee-8ab8bc8b5899": {
-    "token": "part_d931bfaa-c6cd-4b13-a6ee-8ab8bc8b5899",
-    "isParticipant": true,
-    "name": "Karthik Rao",
-    "phone": "9845012345",
-    "gmail": "karthik.rao@college.edu",
-    "domain": "generative-ai",
+    "gmail": "marcus.vance@education.edu",
+    "domain": "ai-education",
     "selectedProblemId": null,
     "hasFired": false,
-    "loginAt": 1789895213552,
-    "updatedAt": 1789895213554
+    "loginAt": 1790153243458,
+    "updatedAt": 1790153243460
   },
-  "part_8e8a40c4-2083-411f-a6ea-764cc54ed92b": {
-    "token": "part_8e8a40c4-2083-411f-a6ea-764cc54ed92b",
+  "part_f7da03a9-2208-4836-9501-a4feadd810d6": {
+    "token": "part_f7da03a9-2208-4836-9501-a4feadd810d6",
     "isParticipant": true,
-    "name": "Deepa Krishnan",
-    "phone": "9845012346",
-    "gmail": "deepa.k@college.edu",
-    "domain": "ai-healthcare",
+    "name": "Elena Rostova",
+    "phone": "9876543230",
+    "gmail": "elena.rostova@fintech.capital",
+    "domain": "fintech",
     "selectedProblemId": null,
     "hasFired": false,
-    "loginAt": 1789895213569,
-    "updatedAt": 1789895213571
+    "loginAt": 1790153243483,
+    "updatedAt": 1790153243486
   },
-  "adm_3e0389f9-ecdc-46ee-84b2-d0f4b4c5b49f": {
-    "token": "adm_3e0389f9-ecdc-46ee-84b2-d0f4b4c5b49f",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789895332570,
-    "updatedAt": 1789895332570
-  },
-  "adm_95393929-f987-402a-842a-6dafb5b621e2": {
-    "token": "adm_95393929-f987-402a-842a-6dafb5b621e2",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789895807596,
-    "updatedAt": 1789895807598
-  },
-  "adm_fc8df37f-8ab4-4d80-bc8f-82602e498a65": {
-    "token": "adm_fc8df37f-8ab4-4d80-bc8f-82602e498a65",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789896330636,
-    "updatedAt": 1789896330639
-  },
-  "adm_53d59cd5-0b9a-43aa-82d3-e11e5fdf71fb": {
-    "token": "adm_53d59cd5-0b9a-43aa-82d3-e11e5fdf71fb",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789912898880,
-    "updatedAt": 1789912898881
-  },
-  "adm_422471e2-8dca-42f0-a836-32297a71027c": {
-    "token": "adm_422471e2-8dca-42f0-a836-32297a71027c",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789913290681,
-    "updatedAt": 1789913290684
-  },
-  "adm_94ee0b4a-695a-44a7-a6eb-f6931a4f1973": {
-    "token": "adm_94ee0b4a-695a-44a7-a6eb-f6931a4f1973",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789961839656,
-    "updatedAt": 1789961839658
-  },
-  "adm_ec683135-7a5c-4d4c-8d78-1094ec1c45d8": {
-    "token": "adm_ec683135-7a5c-4d4c-8d78-1094ec1c45d8",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789963358853,
-    "updatedAt": 1789963358855
-  },
-  "adm_ba70479d-daec-4014-9df4-ef5c11821714": {
-    "token": "adm_ba70479d-daec-4014-9df4-ef5c11821714",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789966841154,
-    "updatedAt": 1789966841154
-  },
-  "adm_5a2ccc55-8d37-4033-b193-452b34ef5c53": {
-    "token": "adm_5a2ccc55-8d37-4033-b193-452b34ef5c53",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789966846375,
-    "updatedAt": 1789966846375
-  },
-  "part_d0cc987a-a7f1-485a-b74d-2e2ea7882dfe": {
-    "token": "part_d0cc987a-a7f1-485a-b74d-2e2ea7882dfe",
+  "part_173c5e3c-90bd-4e79-bad9-7163ef8bfc21": {
+    "token": "part_173c5e3c-90bd-4e79-bad9-7163ef8bfc21",
     "isParticipant": true,
     "name": "prasanna",
     "phone": "1234567890",
     "gmail": "rtuwuywtuywetyuqet@gmail.com",
     "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1789966867512,
-    "updatedAt": 1789966867547
-  },
-  "adm_39c3bc82-56f4-4aab-b04a-11a9e08b6562": {
-    "token": "adm_39c3bc82-56f4-4aab-b04a-11a9e08b6562",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1789967090936,
-    "updatedAt": 1789967090937
-  },
-  "part_6fc512e9-588d-4fc4-a47a-a66286ed4411": {
-    "token": "part_6fc512e9-588d-4fc4-a47a-a66286ed4411",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": "GEN-10",
+    "selectedProblemId": "GEN-01",
     "hasFired": true,
-    "loginAt": 1789969090644,
-    "updatedAt": 1789969104365,
-    "selectedAt": 1789969103663,
-    "firedAt": 1789969104357
+    "loginAt": 1790153243523,
+    "updatedAt": 1790153243556,
+    "selectedAt": 1790153243542,
+    "firedAt": 1790153243555
   },
-  "part_70a799ce-73b0-4160-a564-1f13d815e4b1": {
-    "token": "part_70a799ce-73b0-4160-a564-1f13d815e4b1",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1789971996349,
-    "updatedAt": 1789971996350
-  },
-  "part_968c5e00-1acd-44f9-bfcc-b9411909dc02": {
-    "token": "part_968c5e00-1acd-44f9-bfcc-b9411909dc02",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1789972257816,
-    "updatedAt": 1789972257823
-  },
-  "adm_34b7990e-76ea-48f7-ab6a-898a8e2934bc": {
-    "token": "adm_34b7990e-76ea-48f7-ab6a-898a8e2934bc",
+  "adm_a7de314b-4d43-4596-96c4-a5326f410306": {
+    "token": "adm_a7de314b-4d43-4596-96c4-a5326f410306",
     "isAdmin": true,
     "name": "Command Administrator",
-    "loginAt": 1789972257883,
-    "updatedAt": 1789972257885
-  },
-  "part_d607cdc0-9d05-4e7b-b36c-3ef3e61e14f1": {
-    "token": "part_d607cdc0-9d05-4e7b-b36c-3ef3e61e14f1",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1789978764899,
-    "updatedAt": 1789978764904
-  },
-  "part_a465d3df-8537-43bb-95aa-5f751dbc5d38": {
-    "token": "part_a465d3df-8537-43bb-95aa-5f751dbc5d38",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1789982582805,
-    "updatedAt": 1789982582809
-  },
-  "part_499e16b4-43ea-40f5-8d27-eb02270867f8": {
-    "token": "part_499e16b4-43ea-40f5-8d27-eb02270867f8",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1790064489868,
-    "updatedAt": 1790064489881
-  },
-  "adm_9eea5057-2136-464e-b71b-ec63a71866b2": {
-    "token": "adm_9eea5057-2136-464e-b71b-ec63a71866b2",
-    "isAdmin": true,
-    "name": "Command Administrator",
-    "loginAt": 1790136737474,
-    "updatedAt": 1790136737475
-  },
-  "part_b120f3d3-a96b-40f9-bb1f-61443bdb88e6": {
-    "token": "part_b120f3d3-a96b-40f9-bb1f-61443bdb88e6",
-    "isParticipant": true,
-    "name": "prasanna",
-    "phone": "1234567890",
-    "gmail": "rtuwuywtuywetyuqet@gmail.com",
-    "domain": "generative-ai",
-    "selectedProblemId": null,
-    "hasFired": false,
-    "loginAt": 1790136760386,
-    "updatedAt": 1790136760388
+    "loginAt": 1790153243593,
+    "updatedAt": 1790153243596
   }
 }

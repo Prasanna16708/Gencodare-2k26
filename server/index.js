@@ -170,9 +170,16 @@ app.post('/api/auth/login', (req, res) => {
 
   // Check if participant already has a session to restore selected problem
   const allSessions = Storage.getSessions();
-  const existingSession = Object.values(allSessions).find(
-    s => s.isParticipant && (s.gmail === participant.gmail || s.phone === participant.phone)
+  const matchingSessions = Object.values(allSessions).filter(
+    s => s.isParticipant && (
+      (participant.gmail && s.gmail === participant.gmail) ||
+      (participant.phone && s.phone === participant.phone)
+    )
   );
+
+  const existingSession = matchingSessions.find(s => s.hasFired) ||
+    matchingSessions.find(s => s.selectedProblemId) ||
+    matchingSessions.sort((a, b) => (b.loginAt || 0) - (a.loginAt || 0))[0];
 
   if (existingSession) {
     sessionData.selectedProblemId = existingSession.selectedProblemId || null;
@@ -182,6 +189,9 @@ app.post('/api/auth/login', (req, res) => {
   Storage.saveSession(token, sessionData);
 
   const domainInfo = Storage.getDomainById(participant.domain);
+  const selectedProblem = sessionData.selectedProblemId
+    ? Storage.getProblemById(sessionData.selectedProblemId)
+    : null;
 
   res.json({
     message: 'AUTHENTICATION GRANTED',
@@ -193,6 +203,7 @@ app.post('/api/auth/login', (req, res) => {
       domain: participant.domain,
       domainInfo,
       selectedProblemId: sessionData.selectedProblemId,
+      selectedProblem,
       hasFired: sessionData.hasFired,
     },
     hackathon: Storage.getTimerStatus(),
@@ -669,9 +680,19 @@ app.delete('/api/admin/ppt-template', requireAdminAuth, (req, res) => {
   res.json({ message: 'PPT TEMPLATE REMOVED SUCCESSFULLY' });
 });
 
+// Health check for Railway and monitoring
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ONLINE',
+    uptime: Math.floor(process.uptime()),
+    timestamp: Date.now(),
+    service: 'DOOMSDAY COMMAND CENTER'
+  });
+});
+
 // SPA Fallback to index.html for non-API routes
 app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api') || req.path.startsWith('/uploads') || req.path.startsWith('/icons')) {
+  if (req.path.startsWith('/api') || req.path.startsWith('/uploads') || req.path.startsWith('/icons') || req.path === '/health') {
     return next();
   }
   const indexPath = path.join(distDir, 'index.html');
@@ -689,6 +710,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`[DOOMSDAY COMMAND CENTER SERVER] Online and listening on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`[DOOMSDAY COMMAND CENTER SERVER] Online and listening on port ${PORT} (0.0.0.0)`);
 });

@@ -237,7 +237,7 @@ export default function ProblemSelection({
                   [{detailProblem.id}]
                 </span>
                 <span className="text-[11px] font-mono text-silver-muted uppercase tracking-wider">
-                  {currentDomainObj?.name}
+                  {domain?.name || 'ASSIGNED SECTOR'}
                 </span>
               </div>
               <button
