@@ -67,5 +67,12 @@
     "name": "Command Administrator",
     "loginAt": 1790153243593,
     "updatedAt": 1790153243596
+  },
+  "adm_1d3036ee-eef8-4656-9151-4c863891ec06": {
+    "token": "adm_1d3036ee-eef8-4656-9151-4c863891ec06",
+    "isAdmin": true,
+    "name": "Command Administrator",
+    "loginAt": 1790154209643,
+    "updatedAt": 1790154209645
   }
 }
