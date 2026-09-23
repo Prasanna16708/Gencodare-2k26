@@ -53,6 +53,7 @@ export const Storage = {
       hackathonStartTime: null,
       hackathonEndTime: null,
       status: 'RUNNING',
+      pptTemplate: null,
     });
 
     // Authoritative timestamp initialization:
@@ -112,8 +113,23 @@ export const Storage = {
       status: isExpired ? 'EXPIRED' : (isStarted ? 'RUNNING' : 'NOT_STARTED'),
       feedbackFormUrl: config.feedbackFormUrl,
       pptSubmissionUrl: config.pptSubmissionUrl || 'https://drive.google.com/drive/folders/PLACEHOLDER',
+      pptTemplate: config.pptTemplate || null,
       hackathonTitle: config.hackathonTitle,
     };
+  },
+
+  // PPT Template Management
+  getPptTemplate() {
+    const config = this.getConfig();
+    return config.pptTemplate || null;
+  },
+
+  savePptTemplate(templateInfo) {
+    return this.updateConfig({ pptTemplate: templateInfo });
+  },
+
+  deletePptTemplate() {
+    return this.updateConfig({ pptTemplate: null });
   },
 
   // Participants

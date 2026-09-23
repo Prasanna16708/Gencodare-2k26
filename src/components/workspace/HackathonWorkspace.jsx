@@ -30,13 +30,15 @@ export default function HackathonWorkspace({ participant, domain, hackathon }) {
       {/* 2. 24-hour countdown timer */}
       <Timer24h initialHackathon={hackathon} />
 
-      {/* 3. Selected problem statement, 4. Feedback form button, 5. PPT Submission */}
+      {/* 3. Selected problem statement, 4. PPT Template Download, 5. Feedback form button, 6. PPT Submission */}
       <ProblemView
         problem={participant?.selectedProblem}
         domain={domain || participant?.domainInfo}
         feedbackUrl={hackathon?.feedbackFormUrl}
         pptUrl={hackathon?.pptSubmissionUrl}
+        initialPptTemplate={hackathon?.pptTemplate}
       />
     </div>
   );
 }
+

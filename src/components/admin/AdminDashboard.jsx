@@ -23,7 +23,8 @@ import {
   Edit,
   Search,
   Target,
-  Filter
+  Filter,
+  Presentation
 } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import { ApiService } from '../../services/api';
@@ -35,12 +36,87 @@ export default function AdminDashboard({ onExitAdmin }) {
   const [loadingLogin, setLoadingLogin] = useState(false);
 
   // Dashboard Data
-  const [activeTab, setActiveTab] = useState('roster'); // 'roster' | 'analytics' | 'carousel' | 'timer' | 'participants'
+  const [activeTab, setActiveTab] = useState('roster'); // 'roster' | 'analytics' | 'carousel' | 'timer' | 'participants' | 'template'
   const [stats, setStats] = useState(null);
   const [carouselItems, setCarouselItems] = useState([]);
   const [participantsList, setParticipantsList] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
   const [actionMessage, setActionMessage] = useState('');
+
+  // PPT Template Management State
+  const [pptTemplate, setPptTemplate] = useState(null);
+  const [selectedTemplateFile, setSelectedTemplateFile] = useState(null);
+  const [isUploadingTemplate, setIsUploadingTemplate] = useState(false);
+  const [templateUploadError, setTemplateUploadError] = useState('');
+  const [isDeletingTemplate, setIsDeletingTemplate] = useState(false);
+
+  const formatFileSize = (bytes) => {
+    if (!bytes || bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const handleTemplateFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setTemplateUploadError('');
+    const ext = '.' + file.name.split('.').pop().toLowerCase();
+    const validExts = ['.pptx', '.ppt', '.pdf', '.odp', '.key', '.zip'];
+    if (!validExts.includes(ext)) {
+      setTemplateUploadError(`Unsupported file format (${ext}). Please select a .pptx, .ppt, or .pdf presentation file.`);
+      setSelectedTemplateFile(null);
+      return;
+    }
+    setSelectedTemplateFile(file);
+  };
+
+  const handleUploadTemplate = async (e) => {
+    if (e) e.preventDefault();
+    if (!selectedTemplateFile) return;
+
+    setIsUploadingTemplate(true);
+    setTemplateUploadError('');
+    const formData = new FormData();
+    formData.append('template', selectedTemplateFile);
+
+    try {
+      const res = await ApiService.adminUploadPptTemplate(formData);
+      setActionMessage(res.message || 'OFFICIAL PPT TEMPLATE BROADCASTED TO ALL PARTICIPANTS');
+      setPptTemplate(res.template);
+      setSelectedTemplateFile(null);
+      const fileInput = document.getElementById('pptTemplateFileInput');
+      if (fileInput) fileInput.value = '';
+      fetchAdminData();
+      setTimeout(() => setActionMessage(''), 5000);
+    } catch (err) {
+      setTemplateUploadError(`UPLOAD FAILED: ${err.message}`);
+    } finally {
+      setIsUploadingTemplate(false);
+    }
+  };
+
+  const handleDeleteTemplate = async () => {
+    if (!window.confirm('Are you sure you want to remove the broadcasted PPT template? Students will no longer be able to download it.')) {
+      return;
+    }
+    setIsDeletingTemplate(true);
+    try {
+      const res = await ApiService.adminDeletePptTemplate();
+      setActionMessage(res.message || 'PPT TEMPLATE REMOVED');
+      setPptTemplate(null);
+      setSelectedTemplateFile(null);
+      const fileInput = document.getElementById('pptTemplateFileInput');
+      if (fileInput) fileInput.value = '';
+      fetchAdminData();
+      setTimeout(() => setActionMessage(''), 5000);
+    } catch (err) {
+      setActionMessage(`REMOVE FAILED: ${err.message}`);
+    } finally {
+      setIsDeletingTemplate(false);
+    }
+  };
 
   // Roster Upload State
   const [jsonInput, setJsonInput] = useState('');
@@ -108,16 +184,18 @@ export default function AdminDashboard({ onExitAdmin }) {
   const fetchAdminData = async () => {
     setLoadingData(true);
     try {
-      const [statsData, carouselData, partData, problemsData] = await Promise.all([
+      const [statsData, carouselData, partData, problemsData, templateData] = await Promise.all([
         ApiService.adminGetStats(),
         ApiService.getCarousel(),
         ApiService.adminGetParticipants(),
         ApiService.adminGetAllProblems(),
+        ApiService.getPptTemplateInfo().catch(() => ({ hasTemplate: false, template: null })),
       ]);
       setStats(statsData);
       setCarouselItems(carouselData || []);
       setParticipantsList(partData || []);
       setProblemsList(problemsData?.problems || []);
+      setPptTemplate(templateData?.template || statsData?.timer?.pptTemplate || null);
       if (statsData?.timer?.durationHours) {
         setDurationHours(statsData.timer.durationHours);
       }
@@ -962,6 +1040,18 @@ export default function AdminDashboard({ onExitAdmin }) {
         >
           <Upload size={14} />
           <span>CAROUSEL BROADCAST MANAGER ({carouselItems.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('template')}
+          className={`px-4 py-2 rounded-lg font-mono text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === 'template'
+              ? 'bg-[var(--green-primary)] text-black shadow-[0_0_12px_rgba(0,255,102,0.5)]'
+              : 'text-silver-muted hover:text-white bg-black/40'
+          }`}
+        >
+          <Presentation size={14} />
+          <span>PPT TEMPLATE & SLIDES {pptTemplate ? '(1 ACTIVE)' : '(0)'}</span>
         </button>
 
         <button
@@ -1850,6 +1940,279 @@ Student 4, student4@college.edu, 9999999904, fintech`);
                 </button>
               </div>
             </form>
+          </div>
+
+          {/* Quick PPT Template Status Card inside Timer Tab */}
+          <div className="liquid-glass hud-corner p-6 sm:p-8 border border-white/10">
+            <h4 className="font-hud text-base font-bold text-silver-bright mb-2 flex items-center gap-2">
+              <Presentation size={18} className="text-green" />
+              OFFICIAL PPT TEMPLATE STATUS
+            </h4>
+            <p className="text-xs font-mono text-silver-muted mb-4">
+              Participants use this template to prepare their final pitch deck for judges.
+            </p>
+
+            {pptTemplate ? (
+              <div className="p-4 rounded-lg bg-black/40 border border-[var(--green-primary)]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+                <div>
+                  <div className="text-silver-bright font-bold flex items-center gap-2">
+                    <span className="text-green">●</span>
+                    <span>{pptTemplate.originalName}</span>
+                  </div>
+                  <div className="text-[11px] text-silver-muted mt-0.5">
+                    Size: {formatFileSize(pptTemplate.size)} • Uploaded: {new Date(pptTemplate.uploadedAt).toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href="/api/hackathon/ppt-template/download"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary py-1.5 px-3 text-xs flex items-center gap-1.5 text-green"
+                  >
+                    <Download size={13} />
+                    <span>Download</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('template')}
+                    className="btn-primary py-1.5 px-3 text-xs cursor-pointer"
+                  >
+                    Manage
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="p-4 rounded-lg bg-black/40 border border-yellow-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+                <div className="text-yellow-400">
+                  No official template uploaded yet. Students see "Pending Organizer Upload".
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('template')}
+                  className="btn-primary py-1.5 px-3 text-xs shrink-0 cursor-pointer"
+                >
+                  Upload Template
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* TAB: PPT TEMPLATE & SLIDES MANAGER */}
+      {activeTab === 'template' && (
+        <div className="space-y-8 animate-fade-in max-w-4xl">
+          {/* Header Description */}
+          <div className="liquid-glass hud-corner p-6 sm:p-8 border border-[var(--green-primary)]/40">
+            <h3 className="font-hud text-lg sm:text-xl font-bold text-silver-bright mb-2 flex items-center gap-2.5">
+              <Presentation size={22} className="text-green" />
+              <span>OFFICIAL PPT PRESENTATION TEMPLATE MANAGER</span>
+            </h3>
+            <p className="text-xs sm:text-sm font-mono text-silver-main leading-relaxed mb-4">
+              Upload your official hackathon presentation slide template (<code className="text-green font-bold">.pptx</code>, <code className="text-green font-bold">.ppt</code>, or <code className="text-green font-bold">.pdf</code>). Once uploaded, a prominent <span className="text-green font-bold">"DOWNLOAD PPT TEMPLATE"</span> button will appear live on all participant dashboards and workspaces!
+            </p>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-black/60 border border-white/10 text-silver-muted text-xs font-mono">
+              <CheckCircle size={13} className="text-green" />
+              <span>Direct 1-click download with original file name for students</span>
+            </div>
+          </div>
+
+          {/* Upload Form Box */}
+          <div className="liquid-glass hud-corner p-6 sm:p-8 border border-white/10">
+            <h4 className="font-hud text-base font-bold text-silver-bright mb-3 flex items-center gap-2">
+              <Upload size={18} className="text-green" />
+              <span>{pptTemplate ? 'REPLACE / UPDATE OFFICIAL TEMPLATE' : 'UPLOAD OFFICIAL PPT TEMPLATE'}</span>
+            </h4>
+
+            {templateUploadError && (
+              <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/50 text-red-400 font-mono text-xs flex items-center gap-2">
+                <AlertTriangle size={15} className="shrink-0" />
+                <span>{templateUploadError}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleUploadTemplate} className="space-y-5">
+              {/* File Drop Area */}
+              <div className="relative border-2 border-dashed border-white/20 hover:border-[var(--green-primary)]/60 rounded-xl p-6 sm:p-8 text-center transition-all bg-black/40 hover:bg-black/60 group">
+                <input
+                  id="pptTemplateFileInput"
+                  type="file"
+                  accept=".pptx, .ppt, .pdf, .odp, .key, .zip"
+                  onChange={handleTemplateFileChange}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                />
+
+                <div className="flex flex-col items-center justify-center pointer-events-none">
+                  <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-3 group-hover:border-[var(--green-primary)] group-hover:shadow-[0_0_20px_rgba(0,255,102,0.3)] transition-all">
+                    <Presentation size={26} className="text-green" />
+                  </div>
+
+                  {selectedTemplateFile ? (
+                    <div className="space-y-1">
+                      <div className="text-sm font-hud font-bold text-silver-bright">
+                        {selectedTemplateFile.name}
+                      </div>
+                      <div className="text-xs font-mono text-green">
+                        {formatFileSize(selectedTemplateFile.size)} • Ready for broadcast
+                      </div>
+                      <div className="text-[11px] font-mono text-silver-muted mt-2">
+                        Click or drag to choose a different file
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-1">
+                      <div className="text-sm font-hud font-bold text-silver-bright">
+                        Drop your PPT template here, or <span className="text-green underline">browse files</span>
+                      </div>
+                      <div className="text-xs font-mono text-silver-muted">
+                        Supports PowerPoint (.pptx, .ppt) and PDF (.pdf) • Up to 200 MB
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Upload Button */}
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div className="text-xs font-mono text-silver-muted">
+                  {selectedTemplateFile ? 'File staged for broadcast.' : 'No file selected yet.'}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={!selectedTemplateFile || isUploadingTemplate}
+                  className="btn-primary py-3 px-8 text-xs sm:text-sm font-bold flex items-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(0,255,102,0.3)]"
+                >
+                  {isUploadingTemplate ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      <span>UPLOADING TEMPLATE TO SERVER...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Upload size={16} />
+                      <span>{pptTemplate ? 'OVERWRITE & BROADCAST NEW TEMPLATE' : 'BROADCAST PPT TEMPLATE TO STUDENTS'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Active Template Status Card */}
+          <div className="liquid-glass hud-corner p-6 sm:p-8 border border-white/10">
+            <h4 className="font-hud text-base font-bold text-silver-bright mb-4 flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <CheckCircle size={18} className="text-green" />
+                <span>CURRENTLY BROADCASTED PPT TEMPLATE</span>
+              </span>
+              {pptTemplate && (
+                <span className="text-xs font-mono px-3 py-1 rounded bg-[var(--green-dim)] border border-[var(--green-primary)] text-green">
+                  ACTIVE ON PARTICIPANT TERMINALS
+                </span>
+              )}
+            </h4>
+
+            {pptTemplate ? (
+              <div className="p-5 rounded-xl bg-black/60 border border-[var(--green-primary)]/40 shadow-[0_0_30px_rgba(0,255,102,0.15)] space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-[var(--green-dim)] border border-[var(--green-primary)] flex items-center justify-center shrink-0">
+                      <Presentation size={24} className="text-green" />
+                    </div>
+                    <div>
+                      <h5 className="font-hud text-base sm:text-lg font-bold text-silver-bright">
+                        {pptTemplate.originalName}
+                      </h5>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-silver-muted mt-1">
+                        <span>Size: <strong className="text-silver-bright">{formatFileSize(pptTemplate.size)}</strong></span>
+                        <span>Broadcasted: <strong className="text-silver-bright">{new Date(pptTemplate.uploadedAt).toLocaleString()}</strong></span>
+                        <span>Direct API: <code className="text-green">/api/hackathon/ppt-template/download</code></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 shrink-0">
+                    <a
+                      href="/api/hackathon/ppt-template/download"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary py-2 px-4 text-xs font-bold flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,255,102,0.3)]"
+                      title="Test download file"
+                    >
+                      <Download size={14} />
+                      <span>Test Download</span>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleDeleteTemplate}
+                      disabled={isDeletingTemplate}
+                      className="btn-silver py-2 px-3 text-xs text-red-400 hover:text-red-300 hover:border-red-500 cursor-pointer flex items-center gap-1.5"
+                      title="Remove template"
+                    >
+                      <Trash2 size={14} />
+                      <span>Remove</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-white/5 rounded border border-white/10 font-mono text-[11px] text-silver-muted flex items-center gap-2">
+                  <Check size={14} className="text-green shrink-0" />
+                  <span>
+                    When students click "DOWNLOAD PPT TEMPLATE" in their Hackathon Workspace or Problem View, their browser immediately downloads <strong className="text-silver-bright">{pptTemplate.originalName}</strong>.
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="p-8 rounded-xl bg-black/40 border border-dashed border-white/15 text-center font-mono space-y-2">
+                <div className="w-12 h-12 rounded-full bg-white/5 mx-auto flex items-center justify-center mb-2">
+                  <Presentation size={22} className="text-silver-muted" />
+                </div>
+                <div className="text-silver-bright font-bold text-sm">
+                  NO OFFICIAL TEMPLATE CURRENTLY BROADCASTED
+                </div>
+                <div className="text-silver-muted text-xs max-w-md mx-auto">
+                  Upload your PowerPoint (.pptx) template above. Once staged, participants will see an active green download button in their Hackathon Workspace.
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Presentation Deck Guidelines Reference */}
+          <div className="liquid-glass hud-corner p-6 border border-white/10 font-mono text-xs text-silver-muted space-y-3">
+            <h5 className="font-hud text-sm font-bold text-silver-bright text-green uppercase tracking-wider">
+              RECOMMENDED SLIDE STRUCTURE FOR GENCODARE 2K26
+            </h5>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-1">
+              <div className="p-3 bg-black/40 rounded border border-white/10">
+                <div className="text-silver-bright font-bold mb-1">1. Title & Team</div>
+                <div className="text-[11px]">Team Name, Members, Domain & Problem Statement ID.</div>
+              </div>
+              <div className="p-3 bg-black/40 rounded border border-white/10">
+                <div className="text-silver-bright font-bold mb-1">2. Problem & Solution</div>
+                <div className="text-[11px]">Core challenge addressed and novel proposed solution.</div>
+              </div>
+              <div className="p-3 bg-black/40 rounded border border-white/10">
+                <div className="text-silver-bright font-bold mb-1">3. Architecture</div>
+                <div className="text-[11px]">System flowchart, agent loop, or data pipeline diagram.</div>
+              </div>
+              <div className="p-3 bg-black/40 rounded border border-white/10">
+                <div className="text-silver-bright font-bold mb-1">4. Tech Stack</div>
+                <div className="text-[11px]">Models, libraries, frameworks, and APIs leveraged.</div>
+              </div>
+              <div className="p-3 bg-black/40 rounded border border-white/10">
+                <div className="text-silver-bright font-bold mb-1">5. Demo & Metrics</div>
+                <div className="text-[11px]">Prototype screenshots, live link, and key benchmark numbers.</div>
+              </div>
+              <div className="p-3 bg-black/40 rounded border border-white/10">
+                <div className="text-silver-bright font-bold mb-1">6. Impact & Roadmap</div>
+                <div className="text-[11px]">Real-world scalability, ethical considerations, future work.</div>
+              </div>
+            </div>
           </div>
         </div>
       )}

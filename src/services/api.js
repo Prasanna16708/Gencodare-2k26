@@ -208,9 +208,32 @@ export const ApiService = {
   },
 
   async adminResetHackathon(durationHours = 24) {
-    return this.request('/admin/hackathon/reset', {
+    return this.request('/hackathon/reset', {
       method: 'POST',
       body: JSON.stringify({ durationHours }),
     });
   },
+
+  // PPT Template Management & Downloads
+  async adminUploadPptTemplate(formData) {
+    return this.request('/admin/ppt-template/upload', {
+      method: 'POST',
+      body: formData,
+    });
+  },
+
+  async adminDeletePptTemplate() {
+    return this.request('/admin/ppt-template', {
+      method: 'DELETE',
+    });
+  },
+
+  async getPptTemplateInfo() {
+    return this.request('/hackathon/ppt-template/info');
+  },
+
+  getPptTemplateDownloadUrl() {
+    return '/api/hackathon/ppt-template/download';
+  },
 };
+

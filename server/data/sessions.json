@@ -233,5 +233,24 @@
     "hasFired": false,
     "loginAt": 1790064489868,
     "updatedAt": 1790064489881
+  },
+  "adm_9eea5057-2136-464e-b71b-ec63a71866b2": {
+    "token": "adm_9eea5057-2136-464e-b71b-ec63a71866b2",
+    "isAdmin": true,
+    "name": "Command Administrator",
+    "loginAt": 1790136737474,
+    "updatedAt": 1790136737475
+  },
+  "part_b120f3d3-a96b-40f9-bb1f-61443bdb88e6": {
+    "token": "part_b120f3d3-a96b-40f9-bb1f-61443bdb88e6",
+    "isParticipant": true,
+    "name": "prasanna",
+    "phone": "1234567890",
+    "gmail": "rtuwuywtuywetyuqet@gmail.com",
+    "domain": "generative-ai",
+    "selectedProblemId": null,
+    "hasFired": false,
+    "loginAt": 1790136760386,
+    "updatedAt": 1790136760388
   }
 }

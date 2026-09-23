@@ -5,7 +5,15 @@
   "hackathonTitle": "GENCODARE 2K26",
   "organization": "ACTioner",
   "adminPassword": "admin",
-  "hackathonStartTime": 1789913383325,
-  "hackathonEndTime": 1789999783325,
-  "status": "RUNNING"
+  "hackathonStartTime": 1790136748510,
+  "hackathonEndTime": 1790223148510,
+  "status": "RUNNING",
+  "pptTemplate": {
+    "filename": "template_1790136737525_Gencodare_2k26_Official_Presentation_Template.pptx",
+    "originalName": "Gencodare_2k26_Official_Presentation_Template.pptx",
+    "size": 62,
+    "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "uploadedAt": 1790136737529,
+    "downloadUrl": "/api/hackathon/ppt-template/download"
+  }
 }

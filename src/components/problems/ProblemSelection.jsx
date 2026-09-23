@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { Target, CheckCircle2, ArrowRight, X, Sparkles, Layers, Shield, Clock } from 'lucide-react';
+import { Target, CheckCircle2, ArrowRight, X, Sparkles, Layers, Shield, Clock, Presentation, Download } from 'lucide-react';
 import { ApiService } from '../../services/api';
 
 export default function ProblemSelection({
@@ -13,6 +13,7 @@ export default function ProblemSelection({
 }) {
   const [problems, setProblems] = useState(initialProblems);
   const [countdownStr, setCountdownStr] = useState('');
+  const [pptTemplate, setPptTemplate] = useState(null);
 
   // Selected Problem ID
   const [selectedId, setSelectedId] = useState(selectedProblemId || null);
@@ -20,6 +21,19 @@ export default function ProblemSelection({
   // Active Detail Modal Problem
   const [detailProblem, setDetailProblem] = useState(null);
   const [localFiring, setLocalFiring] = useState(false);
+
+  // Load template info
+  useEffect(() => {
+    async function loadTemplate() {
+      try {
+        const info = await ApiService.getPptTemplateInfo();
+        if (info && info.hasTemplate) {
+          setPptTemplate(info.template);
+        }
+      } catch (e) {}
+    }
+    loadTemplate();
+  }, []);
 
   // Sync live countdown
   useEffect(() => {
@@ -114,7 +128,19 @@ export default function ProblemSelection({
             </h1>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            {pptTemplate && (
+              <a
+                href="/api/hackathon/ppt-template/download"
+                download={pptTemplate.originalName || 'Hackathon_Template.pptx'}
+                className="btn-secondary text-xs py-1.5 px-3 rounded flex items-center gap-1.5 text-green border-[var(--green-primary)]/40 hover:border-[var(--green-primary)] shadow-[0_0_12px_rgba(0,255,102,0.2)] transition-all cursor-pointer"
+                title={`Download Official PPT Template: ${pptTemplate.originalName}`}
+              >
+                <Presentation size={14} className="text-green" />
+                <span className="hidden sm:inline font-bold">PPT TEMPLATE</span>
+                <Download size={13} />
+              </a>
+            )}
             {countdownStr && (
               <div className="flex items-center gap-2 px-3 py-1 rounded bg-black/70 border border-[var(--green-primary)]/50 text-green font-mono text-xs shadow-[0_0_12px_rgba(0,255,102,0.25)]">
                 <Clock size={14} className="text-green animate-pulse" />

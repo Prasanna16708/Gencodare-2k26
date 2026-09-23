@@ -59,6 +59,44 @@ const upload = multer({
   },
 });
 
+// Configure Multer for PPT / Presentation templates
+const templatesDir = path.join(uploadsDir, 'templates');
+if (!fs.existsSync(templatesDir)) {
+  fs.mkdirSync(templatesDir, { recursive: true });
+}
+
+const pptStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, templatesDir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase() || '.pptx';
+    const cleanBase = path.parse(file.originalname).name.replace(/[^a-zA-Z0-9_-]/g, '_');
+    const uniqueName = `template_${Date.now()}_${cleanBase}${ext}`;
+    cb(null, uniqueName);
+  },
+});
+
+const pptUpload = multer({
+  storage: pptStorageEngine,
+  limits: { fileSize: 200 * 1024 * 1024 }, // 200MB
+  fileFilter: (req, file, cb) => {
+    const allowedExts = ['.pptx', '.ppt', '.pdf', '.odp', '.key', '.zip'];
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (
+      allowedExts.includes(ext) ||
+      file.mimetype.includes('presentation') ||
+      file.mimetype.includes('powerpoint') ||
+      file.mimetype.includes('pdf') ||
+      file.mimetype.includes('octet-stream')
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error('INVALID FILE FORMAT: Please upload a PowerPoint (.pptx, .ppt) or PDF presentation file.'));
+    }
+  },
+});
+
 // Helper for extracting bearer token
 function getBearerToken(req) {
   const auth = req.headers.authorization;
@@ -542,6 +580,93 @@ app.post('/api/admin/hackathon/reset', requireAdminAuth, (req, res) => {
   const dur = Number(durationHours) || 24;
   const config = Storage.resetHackathon(dur);
   res.json({ message: 'HACKATHON SESSION RESET TO 24 HOURS', config, timer: Storage.getTimerStatus() });
+});
+
+// ==================== PPT TEMPLATE ROUTES ====================
+
+// Public / Participant: Get current PPT template info
+app.get('/api/hackathon/ppt-template/info', (req, res) => {
+  const template = Storage.getPptTemplate();
+  res.json({
+    hasTemplate: !!template,
+    template,
+  });
+});
+
+// Public / Participant: Download the official PPT template
+app.get('/api/hackathon/ppt-template/download', (req, res) => {
+  const template = Storage.getPptTemplate();
+  if (!template || !template.filename) {
+    return res.status(404).json({ error: 'NO PPT TEMPLATE FOUND: Organizers have not uploaded a presentation template yet.' });
+  }
+
+  const filePath = path.join(templatesDir, template.filename);
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: 'PPT TEMPLATE FILE MISSING: File not found on server.' });
+  }
+
+  const downloadName = template.originalName || template.filename;
+  res.download(filePath, downloadName, (err) => {
+    if (err && !res.headersSent) {
+      console.error('Download error:', err);
+      res.status(500).json({ error: 'Failed to download PPT template.' });
+    }
+  });
+});
+
+// Admin: Upload official PPT template
+app.post('/api/admin/ppt-template/upload', requireAdminAuth, pptUpload.single('template'), (req, res) => {
+  const file = req.file;
+  if (!file) {
+    return res.status(400).json({ error: 'UPLOAD FAILED: No template file received.' });
+  }
+
+  // Check if an existing template was already stored; delete old file
+  const existingTemplate = Storage.getPptTemplate();
+  if (existingTemplate && existingTemplate.filename) {
+    const oldPath = path.join(templatesDir, existingTemplate.filename);
+    if (fs.existsSync(oldPath)) {
+      try {
+        fs.unlinkSync(oldPath);
+      } catch (e) {
+        console.warn('Could not delete old template file:', e.message);
+      }
+    }
+  }
+
+  const templateInfo = {
+    filename: file.filename,
+    originalName: file.originalname,
+    size: file.size,
+    mimeType: file.mimetype,
+    uploadedAt: Date.now(),
+    downloadUrl: '/api/hackathon/ppt-template/download',
+  };
+
+  Storage.savePptTemplate(templateInfo);
+
+  res.json({
+    message: 'OFFICIAL PPT TEMPLATE UPLOADED & BROADCASTED SUCCESSFULLY',
+    template: templateInfo,
+  });
+});
+
+// Admin: Delete current PPT template
+app.delete('/api/admin/ppt-template', requireAdminAuth, (req, res) => {
+  const existingTemplate = Storage.getPptTemplate();
+  if (existingTemplate && existingTemplate.filename) {
+    const filePath = path.join(templatesDir, existingTemplate.filename);
+    if (fs.existsSync(filePath)) {
+      try {
+        fs.unlinkSync(filePath);
+      } catch (e) {
+        console.warn('Could not delete template file:', e.message);
+      }
+    }
+  }
+
+  Storage.deletePptTemplate();
+  res.json({ message: 'PPT TEMPLATE REMOVED SUCCESSFULLY' });
 });
 
 // SPA Fallback to index.html for non-API routes
